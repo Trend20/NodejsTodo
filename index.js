@@ -22,22 +22,11 @@ app.get("/", function(req, res) {
     res.render("index");
 });
 
+// POST
 app.post('/newtasks', (req, res) => {
     res.render('newtasks');
 });
 
-// task array
-var task = ["buy socks", "practise with nodejs"];
-
-app.post('/addtask', function(req, res) {
-    var newTask = req.body.newtask;
-    //add the new task from the post route into the array
-
-    task.push(newTask);
-
-    //after adding to the array go back to the root route
-    res.redirect("/");
-});
 
 // listen to the port
 app.listen(port, function() {
