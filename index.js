@@ -1,7 +1,8 @@
 const express = require('express');
 const app = express();
 const bodyParser = require('body-parser');
-const { urlencoded } = require('body-parser');
+const ejs = require('ejs');
+
 // define the port
 const port = 5000;
 
@@ -9,12 +10,20 @@ const port = 5000;
 app.set('view engine', 'ejs');
 
 app.use(bodyParser.urlencoded({ extended: true }));
+app.use(bodyParser.json());
+
+// styles
+app.use(express.static(__dirname + '/public'));
 
 // routes
 // GET
 
 app.get("/", function(req, res) {
-    res.render("index", { task: task, complete: complete });
+    res.render("index");
+});
+
+app.post('/newtasks', (req, res) => {
+    res.render('newtasks');
 });
 
 // task array
